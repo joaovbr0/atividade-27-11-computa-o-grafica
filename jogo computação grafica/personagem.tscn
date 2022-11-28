@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/movimentação.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 28.9
+
+[node name="jogador" type="Node2D"]
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -320 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="player"]
+texture = SubResource( 1 )
+hframes = 9
+vframes = 9
+frame = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 0, 69.571 )
+scale = Vector2( 5, 3 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+current = true
+zoom = Vector2( 3, 3 )

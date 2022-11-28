@@ -1,0 +1,166 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://grass.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/movimentação.gd" type="Script" id=2]
+
+[sub_resource type="StreamTexture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=3]
+height = 28.9
+
+[sub_resource type="Animation" id=4]
+resource_name = "Parado"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "atacar"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 54, 55, 56, 57 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "cair"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 22, 23, 24, 25 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "correndo"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "morrer"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 70, 73, 74, 75, 76, 77, 78 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "pular"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 18, 19, 20, 21 ]
+}
+
+[sub_resource type="GDScript" id=1]
+
+[node name="world" type="Node2D"]
+position = Vector2( 3072, -256 )
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( 128, -448 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="player"]
+position = Vector2( 1, 0.5 )
+texture = SubResource( 2 )
+hframes = 9
+vframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 0, 74.5 )
+scale = Vector2( 5, 3 )
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2( 0, -300 )
+current = true
+zoom = Vector2( 3, 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+anims/Parado = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+anims/atacar = SubResource( 6 )
+anims/cair = SubResource( 10 )
+anims/correndo = SubResource( 7 )
+anims/morrer = SubResource( 8 )
+anims/pular = SubResource( 9 )
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( -64, 128 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 128
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+show_collision = true
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( -13566063, 0, 0, -13566047, 0, 0, -13566031, 0, 0, -13566015, 0, 0, -13565999, 0, 0, -13565983, 0, 0, -13565967, 0, 0, -13631487, 0, 0, -13631471, 0, 0, -13631455, 0, 0, -13631439, 0, 0, -13631423, 0, 0, -13631407, 0, 0, -13631391, 0, 0, -13631375, 0, 0, -13631359, 0, 0, -13631343, 0, 0, -13631327, 0, 0, -13631311, 0, 0, -13631295, 0, 0, -13631279, 0, 0, -13631263, 0, 0, -13631247, 0, 0, -13631231, 0, 0, -13631215, 0, 0, -13631199, 0, 0, -12517487, 0, 0, -12582623, 0, 0, -11468911, 0, 0, -11534047, 0, 0, -10420335, 0, 0, -10485471, 0, 0, -9371759, 0, 0, -9436895, 0, 0, -8323183, 0, 0, -8388319, 0, 0, -7274607, 0, 0, -7339743, 0, 0, -6226031, 0, 0, -6291167, 0, 0, -5177455, 0, 0, -5242591, 0, 0, -4259551, 0, 0, -4128879, 0, 0, -3210975, 0, 0, -3080303, 0, 0, -2162399, 0, 0, -2031727, 0, 0, -2031711, 0, 0, -1113823, 0, 0, -983151, 0, 0, -983135, 0, 0, -983119, 0, 0, -983103, 0, 0, -983087, 0, 0, -65247, 0, 0, 65425, 0, 0, 65441, 0, 0, 65457, 0, 0, 65473, 0, 0, 65488, 0, 0, 65504, 0, 0, 65520, 0, 0, 0, 0, 0, 16, 0, 0, 32, 0, 0, 48, 0, 0, 64, 0, 0, 80, 0, 0, 96, 0, 0, 112, 0, 0, 128, 0, 0, 144, 0, 0, 160, 0, 0, 176, 0, 0, 192, 0, 0, 208, 0, 0, 224, 0, 0, 240, 0, 0, 256, 0, 0, 272, 0, 0, 287, 0, 0, 289, 0, 0 )
+script = SubResource( 1 )
