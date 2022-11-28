@@ -1,0 +1,166 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Bola.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GlobalVariable.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://bola.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=5]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="atividade29" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Bola" type="KinematicBody2D" parent="."]
+position = Vector2( 513, 285 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Bola"]
+position = Vector2( 0, 3 )
+scale = Vector2( 1, 0.9375 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bola"]
+position = Vector2( 0, 3.05176e-05 )
+shape = SubResource( 5 )
+
+[node name="esquerda" type="Sprite" parent="."]
+position = Vector2( 310.484, 151.756 )
+rotation = -2.48671
+scale = Vector2( 0.440454, -6.79187 )
+texture = ExtResource( 3 )
+
+[node name="esquerda" type="Area2D" parent="esquerda"]
+position = Vector2( -50.8965, 1.68519 )
+scale = Vector2( 0.10786, -0.891797 )
+space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="esquerda/esquerda"]
+position = Vector2( 1.94727, 2.36995 )
+scale = Vector2( 3.34236, 2.99908 )
+shape = SubResource( 2 )
+
+[node name="esquerda2" type="RigidBody2D" parent="esquerda"]
+position = Vector2( -0.946716, -0.0607967 )
+scale = Vector2( 0.978114, 1.01043 )
+mode = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="esquerda/esquerda2"]
+position = Vector2( 1.94727, 2.36995 )
+scale = Vector2( 3.34236, 2.99908 )
+shape = SubResource( 2 )
+
+[node name="direita" type="Sprite" parent="."]
+position = Vector2( 743.402, 442.17 )
+rotation = -2.48671
+scale = Vector2( 0.403317, -6.7932 )
+texture = ExtResource( 3 )
+
+[node name="direita2" type="RigidBody2D" parent="direita"]
+scale = Vector2( 1, 1 )
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="direita/direita2"]
+position = Vector2( -2.52441, 0.029129 )
+scale = Vector2( 3.34236, 3.18871 )
+shape = SubResource( 2 )
+
+[node name="direita" type="Area2D" parent="direita"]
+position = Vector2( 46.2129, 3.05072 )
+scale = Vector2( 0.0869477, 0.874734 )
+space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="direita/direita"]
+position = Vector2( -2.52441, 0.029129 )
+scale = Vector2( 3.34236, 3.18871 )
+shape = SubResource( 2 )
+
+[node name="baixo" type="Sprite" parent="."]
+position = Vector2( 404.664, 480.067 )
+rotation = -0.927968
+scale = Vector2( 0.440454, -7.99883 )
+texture = ExtResource( 3 )
+
+[node name="baixo" type="Area2D" parent="baixo"]
+position = Vector2( 41.418, 0.10503 )
+scale = Vector2( 0.0556536, 0.916967 )
+space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="baixo/baixo"]
+position = Vector2( 1.94788, 0.49646 )
+scale = Vector2( 3.34236, 3.18871 )
+shape = SubResource( 2 )
+
+[node name="baixo2" type="RigidBody2D" parent="baixo"]
+scale = Vector2( 1, 1 )
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="baixo/baixo2"]
+position = Vector2( 1.94788, 0.49646 )
+scale = Vector2( 3.34236, 3.18871 )
+shape = SubResource( 2 )
+
+[node name="cima" type="Sprite" parent="."]
+position = Vector2( 645.397, 142.743 )
+rotation = -0.955869
+scale = Vector2( 0.440454, -8.61066 )
+texture = ExtResource( 3 )
+
+[node name="cima" type="Area2D" parent="cima"]
+space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cima/cima"]
+position = Vector2( -45.2417, 0.000679016 )
+scale = Vector2( 0.335264, 2.72055 )
+shape = SubResource( 2 )
+
+[node name="cima2" type="RigidBody2D" parent="cima"]
+scale = Vector2( 1, 1 )
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cima/cima2"]
+position = Vector2( 1.948, 0.411133 )
+scale = Vector2( 3.34236, 3.19735 )
+shape = SubResource( 2 )
+
+[node name="placa1" type="Label" parent="."]
+margin_left = 282.0
+margin_top = 30.0
+margin_right = 387.0
+margin_bottom = 44.0
+size_flags_stretch_ratio = 0.0
+text = "0"
+
+[node name="placa2" type="Label" parent="."]
+margin_left = 829.0
+margin_top = 29.0
+margin_right = 870.0
+margin_bottom = 43.0
+text = "0"
+
+[node name="Mudou" type="Label" parent="."]
+margin_left = 175.0
+margin_top = 29.0
+margin_right = 215.0
+margin_bottom = 43.0
+size_flags_stretch_ratio = 0.0
+text = "Mudou Posição: "
+
+[node name="bateu" type="Label" parent="."]
+margin_left = 784.0
+margin_top = 29.0
+margin_right = 825.0
+margin_bottom = 43.0
+text = "Bateu:"
+
+[connection signal="body_entered" from="esquerda/esquerda" to="." method="_on_esquerda_body_entered"]
+[connection signal="body_entered" from="direita/direita" to="." method="_on_direita_body_entered"]
+[connection signal="body_entered" from="baixo/baixo" to="." method="_on_baixo_body_entered"]
+[connection signal="body_entered" from="cima/cima" to="." method="_on_cima_body_entered"]
